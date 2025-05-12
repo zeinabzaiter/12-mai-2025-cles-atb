@@ -1,7 +1,3 @@
-# Corriger le bloc de génération de code : éviter les f-strings à l'intérieur du formatage
-# Utiliser des guillemets triples et .format() pour insérer les noms de fichiers
-
-dashboard_code = """
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -59,17 +55,9 @@ fig.update_layout(
     title="Évolution des % de résistance (avec seuils Tukey)",
     xaxis_title="Semaine",
     yaxis_title="Résistance (%)",
-    yaxis=dict(range=[0, 40]),
+    yaxis=dict(range=[0, 20]),
     hovermode="x unified"
 )
 
 # --- Affichage ---
 st.plotly_chart(fig, use_container_width=True)
-"""
-
-# Enregistrer le code dans un fichier Python
-dashboard_path = "/mnt/data/app_streamlit_2024.py"
-with open(dashboard_path, "w") as f:
-    f.write(dashboard_code)
-
-dashboard_path
