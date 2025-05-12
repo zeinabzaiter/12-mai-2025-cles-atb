@@ -55,7 +55,7 @@ fig.update_layout(
     title="Évolution des % de résistance (avec seuils Tukey)",
     xaxis_title="Semaine",
     yaxis_title="Résistance (%)",
-    yaxis=dict(range=[0, 20]),
+    yaxis=dict(range=[0, 30]),  # ✅ Échelle ajustée ici
     hovermode="x unified"
 )
 
