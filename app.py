@@ -3,12 +3,12 @@ import numpy as np
 import streamlit as st
 import plotly.graph_objects as go
 
-# --- Chargement des données ---
-df = pd.read_excel("tests_par_semaine_antibiotiques_2024.xlsx")
+# --- Chargement des données depuis le fichier CSV ---
+df = pd.read_csv("tests_par_semaine_antibiotiques_2024.csv")
 df = df[df["Semaine"].apply(lambda x: str(x).isdigit())].copy()
 df["Semaine"] = df["Semaine"].astype(int)
 
-# --- Détection des colonnes de % de résistance ---
+# --- Détection des colonnes contenant les % de résistance ---
 df.columns = [col.strip() for col in df.columns]
 percentage_cols = [col for col in df.columns if col.startswith('%') or ' %' in col]
 
@@ -21,7 +21,7 @@ selected_antibiotics = st.multiselect(
     default=percentage_cols
 )
 
-# --- Slider pour plage de semaines ---
+# --- Slider pour la plage de semaines ---
 min_week, max_week = df["Semaine"].min(), df["Semaine"].max()
 week_range = st.slider("📆 Plage de semaines", min_week, max_week, (min_week, max_week))
 
@@ -59,5 +59,5 @@ fig.update_layout(
     hovermode="x unified"
 )
 
-# --- Affichage ---
+# --- Affichage du graphique ---
 st.plotly_chart(fig, use_container_width=True)
